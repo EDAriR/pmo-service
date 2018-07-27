@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-table-pmodb
+      author: ed
+      changes:
+        - createTable:
+            tableName: pmo_user
+            columns:
+              - column:
+                  name: sequence
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pmo_password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: synctime
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tenant_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: pmo_result
+            columns:
+              - column:
+                  name: sequence
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: result
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: measurement_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: synctime
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false

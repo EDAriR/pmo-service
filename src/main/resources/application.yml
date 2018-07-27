@@ -1,0 +1,54 @@
+#spring properties
+
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:postgresql://localhost:5432/frienddb
+    username: postgres
+    password: 1qaz2wsx
+    type: org.apache.commons.dbcp2.BasicDataSource
+    dbcp2:
+      initial-size: 15
+      min-idle: 10
+      max-total: 100
+      test-on-borrow: true
+      validation-query: select 1
+      max-wait-millis: 5000
+      max-conn-lifetime-millis: 3600000
+
+#liquibase
+liquibase:
+  change-log: classpath:/db/changelog/db.changelog-master.yml
+#Customize zookeeper properties
+friend:
+  protocol: http
+  host: localhost
+  port: 9453
+  name: friend
+registry:
+  address:
+    - localhost:2181
+    
+#Customize redis
+redis:
+  host: localhost
+  port: 6379
+  pool:
+    max-total: 100
+    max-wait-millis: 5000
+    min-idle: 10
+    test-on-borrow: true
+    
+#session timeout
+session:
+  timeout-sec: 2592000
+
+#push service url
+push-service:
+  url: http://localhost:9002/push/message
+#Customize solr
+solr:
+  url: http://localhost:8983/solr/syntron
