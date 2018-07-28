@@ -1,4 +1,4 @@
-package com.syntrontech.cip.model.common;
+package com.syntrontech.pmo.model.common;
 
 public enum DrinkType {
 	NONE, SOCIALITY, OFTEN;

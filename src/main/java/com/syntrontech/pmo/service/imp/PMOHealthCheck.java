@@ -1,11 +1,11 @@
-package com.syntrontech.syncare.healthCheck;
+package com.syntrontech.pmo.service.imp;
 
 import javax.ws.rs.client.ClientBuilder;
 
 import com.codahale.metrics.health.HealthCheck;
-import com.syntrontech.syncare.external.pmo.PmoWebServiceSettings;
+import com.syntrontech.pmo.pmo.PmoWebServiceSettings;
 
-public class PMOHealthCheck extends HealthCheck {
+public class PMOHealthCheck {
 	private PmoWebServiceSettings pmoWsSettings;
 	
 	public PmoWebServiceSettings getPmoWsSettings() {
@@ -16,7 +16,7 @@ public class PMOHealthCheck extends HealthCheck {
 		this.pmoWsSettings = pmoWsSettings;
 	}
 
-	@Override
+
 	protected Result check() throws Exception {
 		try{
 			send("Member");

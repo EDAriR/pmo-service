@@ -14,9 +14,9 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
-public class PmoService {
+public class PmoServiceImp {
 
-    private PmoService pmoWS;
+    private PmoServiceImp pmoWS;
 
     private UserData buildPmoUser(SystemUser user, String areaCode) {
 
@@ -44,7 +44,7 @@ public class PmoService {
          *}
          **/
 
-        pmoUser.setEmail(rs.());
+        pmoUser.setEmail(ru.getEmails());
         char _sex = user.getSex().name().toUpperCase().charAt(0);
         pmoUser.setSex("" + _sex);
         pmoUser.setTel(user.getUserPhone());

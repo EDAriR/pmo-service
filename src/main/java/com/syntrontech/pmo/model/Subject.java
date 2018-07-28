@@ -1,4 +1,4 @@
-package com.syntrontech.cip.model;
+package com.syntrontech.pmo.model;
 
 import java.util.Date;
 import java.util.List;
@@ -12,17 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.syntrontech.pmo.model.common.*;
+import com.syntrontech.pmo.restful.to.TO;
 import org.hibernate.annotations.Type;
 
-import com.syntrontech.cip.model.common.ChewingArecaType;
-import com.syntrontech.cip.model.common.DrinkType;
-import com.syntrontech.cip.model.common.EthnicityType;
-import com.syntrontech.cip.model.common.FamilyHistoryType;
-import com.syntrontech.cip.model.common.GenderType;
-import com.syntrontech.cip.model.common.ModelStatus;
-import com.syntrontech.cip.model.common.PersonalHistoryType;
-import com.syntrontech.cip.model.common.SmokeType;
-import com.syntrontech.cip.restful.to.TO;
 
 @Table
 @Entity(name = "subject")

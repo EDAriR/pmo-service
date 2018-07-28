@@ -1,14 +1,11 @@
-package com.syntrontech.cip.solr.model;
+package com.syntrontech.pmo.solr.model;
 
 import java.time.Instant;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.syntrontech.cip.model.Subject;
-import com.syntrontech.cip.restful.to.TO;
-
-public class SolrSubject implements TO<Subject>, SolrDoc{
+public class SolrSubject implements SolrDoc{
 	
 	private String id;
 	
@@ -203,36 +200,6 @@ public class SolrSubject implements TO<Subject>, SolrDoc{
 		this.subjectUpdateTime_dt = subjectUpdateTime_dt;
 	}
 
-	public TO<SolrSubject> convertToTO(TO<SolrSubject> to){
-		return to.convertFrom(this);
-	}
-	
-	@Override
-	public TO<Subject> convertFrom(Subject model) {
-		this.id = this.getClass().getSimpleName()+model.getSequence();
-		this.subjectId_s = model.getId();
-		this.subjectName_s = model.getName();
-		this.subjectGender_s = model.getGender().toString();
-		this.subjectBirthday_dt = Instant.ofEpochMilli(model.getBirthday().getTime())
-				  						 .toString();
-		this.subjectHomePhone_s = model.getHomePhone();
-		this.subjectAddress_s = model.getAddress();
-		this.subjectEthnicity_s = model.getEthnicity().toString();
-		this.subjectPersonalHistory_ss = model.getPersonalHistory();
-		this.subjectFamilyHistory_ss = model.getFamilyHistory();
-		this.subjectSmoke_s = model.getSmoke().toString();
-		this.subjectDrink_s = model.getDrink().toString();
-		this.subjectChewingAreca_s = model.getChewingAreca().toString();
-		this.subjectUserId_s = model.getUserId();
-		this.subjectUnitId_s = model.getUnitId();
-		this.subjectUnitName_s = model.getUnitName();
-		this.subjectTenantId_s = model.getTenantId();
-		this.subjectCreateTime_dt = Instant.ofEpochMilli(model.getCreateTime().getTime())
-				  							.toString();
-		this.subjectUpdateTime_dt = Instant.ofEpochMilli(model.getUpdateTime().getTime())
-				  							.toString();
-		return this;
-	}
 
 	@Override
 	public Map<String, String> createFieldNameMap() {

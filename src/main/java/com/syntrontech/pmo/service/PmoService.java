@@ -1,5 +1,5 @@
 package com.syntrontech.pmo.service;
 
-public interface PmoServiceImo {
+public interface PmoService {
 
 }

@@ -1,4 +1,4 @@
-package com.syntrontech.syncare.utils; 
+package com.syntrontech.pmo.util;
 
 import java.time.Instant;
 import java.time.LocalDate;

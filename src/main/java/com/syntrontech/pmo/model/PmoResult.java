@@ -1,4 +1,6 @@
-package com.syntrontech.pmo.pmo;
+package com.syntrontech.pmo.model;
+
+import com.syntrontech.pmo.model.common.PmoStatus;
 
 import java.util.Date;
 
