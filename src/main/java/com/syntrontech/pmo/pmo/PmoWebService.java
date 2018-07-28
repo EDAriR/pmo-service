@@ -4,10 +4,10 @@ import java.util.concurrent.Future;
 
 import javax.xml.ws.AsyncHandler;
 
-import com.syntrontech.syncare.external.pmo.model.ResultMessage;
-import com.syntrontech.syncare.external.pmo.model.UserData;
-import com.syntrontech.syncare.external.pmo.model.VitalRecord;
-import com.syntrontech.syncare.external.pmo.vitalsign.UploadVitalRecordResponse;
+import com.syntrontech.pmo.pmo.model.ResultMessage;
+import com.syntrontech.pmo.pmo.model.UserData;
+import com.syntrontech.pmo.pmo.model.VitalRecord;
+import com.syntrontech.pmo.pmo.vitalsign.UploadVitalRecordResponse;
 
 
 public interface PmoWebService {

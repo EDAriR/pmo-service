@@ -6,7 +6,7 @@ import javax.persistence.Enumerated;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.syntrontech.syncare.model.common.YN;
+import com.syntrontech.pmo.model.common.YN;
 
 @JsonIgnoreProperties
 public class UserData {
