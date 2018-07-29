@@ -10,6 +10,8 @@ import com.syntrontech.pmo.model.common.YN;
 
 @JsonIgnoreProperties
 public class UserData {
+
+	// 身份證字號
 	@JsonProperty("IDNo")
 	private String idno;
 	
@@ -35,7 +37,8 @@ public class UserData {
 	
 	@JsonProperty("Tel")
 	private String tel;
-	
+
+	// 台東 10014
 	@JsonProperty("AreaCode")
 	private String areaCode;
 	
@@ -50,11 +53,11 @@ public class UserData {
 	@JsonProperty("Address")
 	private String address;
 	
-	//
+	// 01 社區 02 居家
 	@JsonProperty("Type")
 	private String type;
 	
-	//
+	// 01 無 02 弱勢族群
 	@JsonProperty("Group")
 	private String group;
 
@@ -62,12 +65,12 @@ public class UserData {
 	@JsonProperty("MobilePhone")
 	private String mobilePhone;
 	
-	//
+	// 確診高血壓
 	@JsonProperty("isHTN")
 	@Enumerated(EnumType.STRING)
 	private YN isHTN = YN.N;
 	
-	//
+	// 確診糖尿病
 	@JsonProperty("isDM")
 	@Enumerated(EnumType.STRING)
 	private YN isDM = YN.N;

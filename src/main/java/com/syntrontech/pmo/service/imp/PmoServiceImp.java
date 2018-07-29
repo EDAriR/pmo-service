@@ -1,5 +1,7 @@
 package com.syntrontech.pmo.service.imp;
 
+import com.syntrontech.pmo.model.auth.model.solr.SolrUser;
+import com.syntrontech.pmo.pmo.PmoWebService;
 import com.syntrontech.pmo.pmo.model.ResultMessage;
 import com.syntrontech.pmo.pmo.model.UserData;
 import com.syntrontech.pmo.pmo.model.VitalRecord;
@@ -16,19 +18,20 @@ import java.util.Date;
 
 public class PmoServiceImp {
 
-    private PmoServiceImp pmoWS;
+    private PmoWebService pmoWS;
 
     private UserData buildPmoUser(SystemUser user, String areaCode) {
 
         // TODO
-        SolrSubject ss = new SolrSubject();
+        SolrSubject solrSubject = new SolrSubject();
         RedisUser ru = new RedisUser();
+        SolrUser su = new SolrUser();
 
         UserData pmoUser = new UserData();
-        pmoUser.setIdno(rs.getUserId());
+        pmoUser.setIdno(solrSubject.getId());
         pmoUser.setPassword(ru.getPmoPassword());
 
-        SystemUserCard card = ru.().get(0);
+        SystemUserCard card = su.getCards_ss();
         pmoUser.setIdentifier(card.getCardId());
 
         /**台東有三張卡
@@ -45,20 +48,21 @@ public class PmoServiceImp {
          **/
 
         pmoUser.setEmail(ru.getEmails());
-        char _sex = user.getSex().name().toUpperCase().charAt(0);
+        char _sex = solrSubject.getSubjectGender_s();
         pmoUser.setSex("" + _sex);
-        pmoUser.setTel(user.getUserPhone());
+        pmoUser.setTel(su.getMobilePhones_ss());
         //pmoUser.setTel(fixPhoneNum(user.getUserPhone())); // 區碼用()包起來，例：(02)23456677
         SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd");
-        pmoUser.setBirth(f.format(user.getUserBirthday()));
+        pmoUser.setBirth(f.format(solrSubject.getSubjectBirthday_dt()));
         //以下台東
-        pmoUser.setName(user.getUserDisplayName());
-        pmoUser.setAddress(user.getUserAddress());
+        pmoUser.setName(solrSubject.getSubjectName_s());
+        pmoUser.setAddress(solrSubject.getSubjectAddress_s());
         pmoUser.setType("01");	// 2016-06-24  將Type預設為01(個人資料未同設備綁定為社區(01)或居家(02))
         pmoUser.setGroup("01");	// 2016-06-24  將Group預設為01(個人資料未區分使用者族群為無(01)或弱勢族群(02))
         pmoUser.setMobilePhone(fixMobilePhoneNum(user.getUserMobile()));
-        pmoUser.setIsHTM(user.getWithHighBloodPressure());;
+        pmoUser.setIsHTM(solrSubject.getSubjectPersonalHistory_ss());;
         pmoUser.setIsDM(user.getWithDiabetesMellitus());
+
         pmoUser.setIsAlert(user.getAlert());
         pmoUser.setAlertNotifierName(StringUtils.isBlank(user.getAlertNotifierName()) ? "" : user.getAlertNotifierName());
         pmoUser.setAlertNotifierMobilePhone(StringUtils.isBlank(fixMobilePhoneNum(user.getAlertNotifierMobilePhone())) ? "" : fixMobilePhoneNum(user.getAlertNotifierMobilePhone()));
