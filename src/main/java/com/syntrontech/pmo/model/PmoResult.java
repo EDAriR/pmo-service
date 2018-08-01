@@ -11,6 +11,8 @@ public class PmoResult {
     private Long sequence;
     // user_id
     private String userId;
+    // subject_id
+    private String subjectId;
     // measurement_type
     private MeasurementPMOType measurementType;
     // record_id
@@ -41,6 +43,14 @@ public class PmoResult {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public String getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(String subjectId) {
+        this.subjectId = subjectId;
     }
 
     public String getUserId() {

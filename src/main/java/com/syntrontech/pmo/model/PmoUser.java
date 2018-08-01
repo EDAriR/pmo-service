@@ -11,6 +11,8 @@ public class PmoUser {
     private Long sequence;
     // user_id
     private String userId;
+    // subject_id
+    private String subjectId;
     // pmo_password
     private String pmoPassword;
     // status
@@ -34,6 +36,14 @@ public class PmoUser {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(String subjectId) {
+        this.subjectId = subjectId;
     }
 
     public String getPmoPassword() {

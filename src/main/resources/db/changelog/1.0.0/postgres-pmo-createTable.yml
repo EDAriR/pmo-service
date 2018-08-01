@@ -19,6 +19,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: subject_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
                   name: pmo_password
                   type: varchar(255)
                   constraints:
@@ -50,6 +55,11 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: user_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: subject_id
                   type: varchar(255)
                   constraints:
                     nullable: false
