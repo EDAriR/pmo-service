@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 		"com.syntrontech.pmo.repository"
 })
 @EntityScan(basePackages = {
-		"com.syntrontech.pmo.model"
+		"com.syntrontech.pmo.cip"
 })
 @EnableTransactionManagement
 public class Application {
