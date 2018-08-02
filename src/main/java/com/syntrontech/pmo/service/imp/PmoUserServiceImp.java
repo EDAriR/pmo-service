@@ -1,6 +1,6 @@
 package com.syntrontech.pmo.service.imp;
 
-import com.syntrontech.pmo.model.auth.model.solr.SolrUser;
+import com.syntrontech.pmo.solr.model.SolrUser;
 import com.syntrontech.pmo.pmo.PmoWebService;
 import com.syntrontech.pmo.pmo.model.ResultMessage;
 import com.syntrontech.pmo.pmo.model.UserData;
@@ -11,7 +11,6 @@ import org.apache.commons.lang.StringUtils;
 import org.hibernate.service.spi.ServiceException;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

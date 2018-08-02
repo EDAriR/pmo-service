@@ -1,8 +1,8 @@
 package com.syntrontech.pmo.service;
 
-import java.util.Optional;
+import com.syntrontech.pmo.redis.model.RedisUser;
 
-import com.syntrontech.pmo.model.RedisUser;
+import java.util.Optional;
 
 public interface RedisUserService {
 	Optional<RedisUser> findRedisUserByUserId(String userId);

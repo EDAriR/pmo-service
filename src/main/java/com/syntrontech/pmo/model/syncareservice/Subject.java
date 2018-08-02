@@ -1,25 +1,16 @@
-package com.syntrontech.pmo.model;
+package com.syntrontech.pmo.model.syncareservice;
 
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 import com.syntrontech.pmo.model.common.*;
-import com.syntrontech.pmo.restful.to.TO;
-import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Table
 @Entity(name = "subject")
 public class Subject {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "sequence")
@@ -49,11 +40,11 @@ public class Subject {
 	private EthnicityType ethnicity;
 	
 	@Column(name = "personal_history")
-	@Type(type = "com.syntrontech.syncareservice.syncareservice.common.StringArrayType")
+//	@Type(type = "com.syntrontech.syncareservice.syncareservice.common.StringArrayType")
 	private String[] personalHistory;
 	
 	@Column(name = "family_history")
-	@Type(type = "com.syntrontech.syncareservice.syncareservice.common.StringArrayType")
+//	@Type(type = "com.syntrontech.syncareservice.syncareservice.common.StringArrayType")
 	private String[] familyHistory;
 	
 	@Column(name = "smoke")
@@ -95,6 +86,20 @@ public class Subject {
 	@Column(name = "status", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private ModelStatus status;
+
+	@Override
+	public String toString() {
+		return "Subject:[" +
+				"sequence=" + sequence + ", " +
+				"id=" + id + ", " +
+				"userId=" + userId + ", " +
+				"unitId=" + unitId + ", " +
+				"tenantId=" + tenantId + ", " +
+				"createTime=" + createTime + ", " +
+				"createBy=" + createBy + ", " +
+				"status=" + status + " " +
+				"]";
+	}
 
 	public Long getSequence() {
 		return sequence;
@@ -276,7 +281,4 @@ public class Subject {
 		this.status = status;
 	}
 	
-	public TO<Subject> convertToTO(TO<Subject> to){
-		return to.convertFrom(this);
-	}
 }

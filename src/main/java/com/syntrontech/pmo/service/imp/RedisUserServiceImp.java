@@ -2,10 +2,10 @@ package com.syntrontech.pmo.service.imp;
 
 import java.util.Optional;
 
+import com.syntrontech.pmo.redis.model.RedisUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.syntrontech.pmo.model.RedisUser;
 import com.syntrontech.pmo.repository.RedisUserRepository;
 import com.syntrontech.pmo.service.RedisUserService;
 import com.syntrontech.redis.RedisHashRepositoryProxy;

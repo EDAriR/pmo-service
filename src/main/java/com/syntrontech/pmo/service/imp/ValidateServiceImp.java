@@ -13,7 +13,6 @@ import com.syntrontech.autoTool.exception.client.ForbiddenException;
 import com.syntrontech.autoTool.exception.client.UnauthorizedException;
 import com.syntrontech.autoTool.model.UserModel;
 import com.syntrontech.autoTool.service.SessionValidationService;
-import com.syntrontech.pmo.model.RedisUser;
 import com.syntrontech.pmo.model.Session;
 import com.syntrontech.pmo.model.common.ModelUserStatus;
 import com.syntrontech.pmo.service.RedisUserService;
