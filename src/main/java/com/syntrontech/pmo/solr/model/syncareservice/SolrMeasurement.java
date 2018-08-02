@@ -1,6 +1,7 @@
-package com.syntrontech.pmo.model.syncareservice.solr;
+package com.syntrontech.pmo.solr.model.syncareservice;
 
-import com.syntrontech.pmo.solr.SolrDoc;
+
+import com.syntrontech.pmo.solr.model.SolrDoc;
 
 import java.util.Map;
 import java.util.Objects;

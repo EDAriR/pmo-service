@@ -1,7 +1,7 @@
 package com.syntrontech.pmo.model.syncareservice;
 
-import com.syntrontech.pmo.model.TO.TO;
 import com.syntrontech.pmo.model.common.ModelMgmtStatus;
+import com.syntrontech.pmo.restful.to.TO;
 
 import javax.persistence.*;
 import java.util.Date;

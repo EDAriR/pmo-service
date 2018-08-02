@@ -1,6 +1,5 @@
 package com.syntrontech.pmo.solr.model;
 
-import com.syntrontech.pmo.solr.SolrDoc;
 
 import java.util.Map;
 import java.util.Objects;

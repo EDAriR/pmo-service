@@ -1,8 +1,8 @@
 package com.syntrontech.pmo.model.auth;
 
-import com.syntrontech.pmo.model.TO.TO;
 import com.syntrontech.pmo.model.common.ModelUserStatus;
 import com.syntrontech.pmo.model.common.Source;
+import com.syntrontech.pmo.restful.to.TO;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;

@@ -49,6 +49,6 @@ session:
 #push service url
 push-service:
   url: http://localhost:9002/push/message
-#Customize solr
+#Customize syncareservice
 solr:
-  url: http://localhost:8983/solr/syntron
+  url: http://localhost:8983/syncareservice/syntron

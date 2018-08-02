@@ -2,8 +2,8 @@ package com.syntrontech.pmo.model.common;
 
 
 
-import com.syntrontech.pmo.model.syncareservice.solr.BiochemistryComplete;
-import com.syntrontech.pmo.model.syncareservice.solr.SolrBiochemistry;
+import com.syntrontech.pmo.solr.model.syncareservice.BiochemistryComplete;
+import com.syntrontech.pmo.solr.model.syncareservice.SolrBiochemistry;
 
 import java.util.stream.Stream;
 

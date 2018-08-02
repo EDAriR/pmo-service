@@ -1,7 +1,7 @@
 package com.syntrontech.pmo.model.syncareservice.vo;
 
 import com.syntrontech.autoTool.annotation.ParamEnumRequired;
-import com.syntrontech.pmo.cip.model.common.SearchOrder;
+import com.syntrontech.pmo.model.common.SearchOrder;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.QueryParam;

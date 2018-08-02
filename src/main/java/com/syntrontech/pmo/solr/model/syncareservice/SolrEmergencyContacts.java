@@ -1,8 +1,9 @@
-package com.syntrontech.pmo.model.syncareservice.solr;
+package com.syntrontech.pmo.solr.model.syncareservice;
 
-import com.syntrontech.pmo.cip.model.EmergencyContact;
-import com.syntrontech.pmo.model.TO.TO;
-import com.syntrontech.pmo.solr.SolrDoc;
+
+import com.syntrontech.pmo.model.syncareservice.EmergencyContact;
+import com.syntrontech.pmo.restful.to.TO;
+import com.syntrontech.pmo.solr.model.SolrDoc;
 
 import java.util.Map;
 import java.util.Objects;

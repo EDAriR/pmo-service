@@ -40,14 +40,14 @@ public class SolrImp implements Solr {
 		String updateJsonDocUrl = solrUrl + "/update/json/docs?commit=true&optimize=true";
 		
 		connectSolr_post(updateJsonDocUrl, doc);
-		logger.trace("update document to solr successfully");
+		logger.trace("update document to syncareservice successfully");
 	}
 	
 	@Override
 	public void saveJsonDocs(List<?> docs) throws SolrException, ParamFormatErrorException {
 		String updateJsonDocUrl = solrUrl + "/update/json/docs?commit=true&optimize=true";
 		connectSolr_post(updateJsonDocUrl, docs);
-		logger.trace("update document to solr successfully");
+		logger.trace("update document to syncareservice successfully");
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class SolrImp implements Solr {
 		String deleteJsonDocUrl = solrUrl + "/update?commit=true";
 		
 		connectSolr_post(deleteJsonDocUrl, deleteDoc);
-		logger.trace("delete document to solr successfully");
+		logger.trace("delete document to syncareservice successfully");
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class SolrImp implements Solr {
 		String deleteJsonDocUrl = solrUrl + "/update?commit=true";
 		
 		connectSolr_post(deleteJsonDocUrl, deleteDoc);
-		logger.trace("delete document to solr successfully");
+		logger.trace("delete document to syncareservice successfully");
 	}
 	
 	@Override
@@ -151,7 +151,7 @@ public class SolrImp implements Solr {
 			return solrSearchModel;
 			
 		} catch (IOException ex) {
-			String errorMessage = "convert solr document's type json to object error =>" + ex.getMessage();
+			String errorMessage = "convert syncareservice document's type json to object error =>" + ex.getMessage();
 			logger.debug(errorMessage);
 			ex.printStackTrace();
 			throw new SolrException(errorMessage);
@@ -170,14 +170,14 @@ public class SolrImp implements Solr {
 						 				.request(MediaType.APPLICATION_JSON)
 						 				.post(Entity.entity(jsonString, MediaType.APPLICATION_JSON));
 			
-			logger.trace("post document[{}] to solr successfully", jsonString);
+			logger.trace("post document[{}] to syncareservice successfully", jsonString);
 			
 			String entity = response.readEntity(String.class);
 
 			if (response.getStatus() == 400) {
 				
 				int status = response.getStatus();
-				String errorMessage = "request to solr successfully, but get response status[" + status
+				String errorMessage = "request to syncareservice successfully, but get response status[" + status
 						+ "], and the error code is [" + entity + "]";
 				
 				logger.error(errorMessage);
@@ -185,7 +185,7 @@ public class SolrImp implements Solr {
 				
 			}else if(response.getStatus() != 200) {
 				int status = response.getStatus();
-				String errorMessage = "request to solr successfully, but get response status[" + status
+				String errorMessage = "request to syncareservice successfully, but get response status[" + status
 						+ "], and the error code is [" + entity + "]";
 				
 				logger.error(errorMessage);
@@ -201,7 +201,7 @@ public class SolrImp implements Solr {
 			}else if (ex instanceof SolrException) {
 				throw (SolrException) ex;
 			} else {
-				String errorMessage = "can't request to solr, and the error message is [" + ex.getMessage() + "]";
+				String errorMessage = "can't request to syncareservice, and the error message is [" + ex.getMessage() + "]";
 				logger.error(errorMessage);
 				ex.printStackTrace();
 				throw new SolrException(errorMessage);
@@ -217,14 +217,14 @@ public class SolrImp implements Solr {
 			Response response = client.target(solrUrl)
 					 					.request(MediaType.TEXT_PLAIN_TYPE)
 					 					.get();
-			logger.trace("query document from solr successfully");
+			logger.trace("query document from syncareservice successfully");
 			
 			String entity = response.readEntity(String.class);
 
 			if (response.getStatus() == 400) {
 				
 				int status = response.getStatus();
-				String errorMessage = "request to solr successfully, but get response status[" + status
+				String errorMessage = "request to syncareservice successfully, but get response status[" + status
 						+ "], and the error code is [" + entity + "]";
 				
 				logger.error(errorMessage);
@@ -232,7 +232,7 @@ public class SolrImp implements Solr {
 				
 			}else if(response.getStatus() != 200) {
 				int status = response.getStatus();
-				String errorMessage = "request to solr successfully, but get response status[" + status
+				String errorMessage = "request to syncareservice successfully, but get response status[" + status
 						+ "], and the error code is [" + entity + "]";
 				
 				logger.error(errorMessage);
@@ -248,7 +248,7 @@ public class SolrImp implements Solr {
 			}else if (ex instanceof SolrException) {
 				throw (SolrException) ex;
 			} else {
-				String errorMessage = "can't request to solr, and the error message is [" + ex.getMessage() + "]";
+				String errorMessage = "can't request to syncareservice, and the error message is [" + ex.getMessage() + "]";
 				logger.debug(errorMessage);
 				ex.printStackTrace();
 				throw new SolrException(errorMessage);

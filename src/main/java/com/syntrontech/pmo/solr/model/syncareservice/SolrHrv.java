@@ -1,4 +1,4 @@
-package com.syntrontech.pmo.model.syncareservice.solr;
+package com.syntrontech.pmo.solr.model.syncareservice;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

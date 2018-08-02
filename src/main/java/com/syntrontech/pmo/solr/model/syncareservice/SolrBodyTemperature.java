@@ -1,4 +1,4 @@
-package com.syntrontech.pmo.model.syncareservice.solr;
+package com.syntrontech.pmo.solr.model.syncareservice;
 
 public class SolrBodyTemperature extends SolrMeasurement {
 	private String id;

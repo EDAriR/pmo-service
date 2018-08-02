@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix="solr")
+@ConfigurationProperties(prefix="syncareservice")
 public class SolrProperties {
 	
 	private String url;

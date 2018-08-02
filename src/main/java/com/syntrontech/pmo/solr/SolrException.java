@@ -8,7 +8,7 @@ public class SolrException extends ServerException {
 
 	private String errorCode = "SOLR_SERVER_ERROR";
 	
-	private String errorMessage = "solr server error =>";
+	private String errorMessage = "syncareservice server error =>";
 	
 	public SolrException(String errorMessage){
 		this.errorMessage = this.errorMessage + errorMessage;

@@ -1,7 +1,7 @@
 package com.syntrontech.pmo.model.auth;
 
-import com.syntrontech.pmo.model.common.MapToUserField;
 
+import com.syntrontech.pmo.model.common.MapToUserField;
 
 //store in Postgres
 public class AccountList {
