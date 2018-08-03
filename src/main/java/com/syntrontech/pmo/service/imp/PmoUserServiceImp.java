@@ -34,25 +34,21 @@ public class PmoUserServiceImp {
     private Solr solrService;
 
     @Override
-    public SystemUserTO updateUser(RedisSubject redisSubject, String areaCode) {
-        SystemUser user = userDao.get(id).orElseThrow(() -> new ServiceException("User id " + id + " is not found"));
-        copy(user, vo);
-        //台東
-        if (vo.isWithHighBloodPressure()) {
-            user.setCaseStatus(1);
-            user.setCaseStatusDisplay(2);
-        }
-        UserData pmoUser = uploadPmoUser(user, user.getArea().getCode());
+    public UserData saveUser(RedisSubject redisSubject) {
+
+        UserData pmoUser = createPmoUser(redisSubject, areaCode);
+
         ResultMessage pmoResult = pmoWS.uploadUserData(pmoUser);
 
         if ("A01".equalsIgnoreCase(pmoResult.getCode())) {
-            return userDao.modify(user).orElse(user).convert(true);
+
+            return pmoUser;
         } else {
             throw new ServiceException("衛福部平台錯誤: " + pmoResult.getMessage());
         }
     }
 
-    private UserData buildPmoUser(RedisSubject redisSubject, String areaCode) {
+    private UserData createPmoUser(RedisSubject redisSubject, String areaCode) {
 
         // TODO
         SolrSubject solrSubject = null;
@@ -60,20 +56,23 @@ public class PmoUserServiceImp {
         try {
             solrSubject = searchSubject(redisSubject);
             solrUser = searchUser(redisSubject);
-        } catch (InternalServiceException e) {
-            e.printStackTrace();
-        } catch (SolrException e) {
+        } catch (InternalServiceException e ) {
             e.printStackTrace();
         } catch (ParamFormatErrorException e) {
             e.printStackTrace();
         } catch (ObjectNotExistedException e) {
             e.printStackTrace();
+        } catch (SolrException e) {
+            e.printStackTrace();
         }
 
         UserData pmoUser = new UserData();
         pmoUser.setIdno(redisSubject.getId());
-        // TODO
-        pmoUser.setPassword(redisUser.getPmoPassword());
+        // 預設明碼存DB 規則為身份證第一碼大寫+西元生日
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+        String birthdayStr = format.format(redisSubject.getBirthday());
+        birthdayStr = redisSubject.getUserId().charAt(0) + birthdayStr;
+        pmoUser.setPassword(birthdayStr);
 
         /**台東曾經有三張卡**/
         String[] cards = solrUser.getCards_ss();
@@ -86,6 +85,8 @@ public class PmoUserServiceImp {
                     pmoUser.setIdentifier2(c);
                 if(i == 2)
                     pmoUser.setIdentifier3(c);
+
+                i = i + 1;
             }
         }
 
@@ -109,6 +110,7 @@ public class PmoUserServiceImp {
         }
 
         pmoUser.setTel(telPhone);
+        pmoUser.setMobilePhone(mobilPhone);
         //pmoUser.setTel(fixPhoneNum(user.getUserPhone())); // 區碼用()包起來，例：(02)23456677
         SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd");
         pmoUser.setBirth(f.format(solrSubject.getSubjectBirthday_dt()));
@@ -116,7 +118,6 @@ public class PmoUserServiceImp {
         pmoUser.setName(solrSubject.getSubjectName_s());
         pmoUser.setAddress(solrSubject.getSubjectAddress_s());
 
-        // TODO
         pmoUser.setType("01");	// 2016-06-24  將Type預設為01(個人資料未同設備綁定為社區(01)或居家(02))
         pmoUser.setGroup("01");	// 2016-06-24  將Group預設為01(個人資料未區分使用者族群為無(01)或弱勢族群(02))
 
@@ -126,6 +127,7 @@ public class PmoUserServiceImp {
         YN isDM = YN.N;
         if(personalHistorys != null){
             for(String p:Arrays.asList(personalHistorys)){
+                // 判斷個人病史中有高血壓 糖尿病
                 if(p.equals(PersonalHistoryType.HYPERTENSION)){
                     isHTN = YN.Y;
                 }
@@ -135,7 +137,9 @@ public class PmoUserServiceImp {
             }
         }
 
+        // 有高血壓病史
         pmoUser.setIsHTM(isHTN);
+        // 有糖尿病病史
         pmoUser.setIsDM(isDM);
 
         List<SolrEmergencyContacts> es = null;
@@ -155,7 +159,6 @@ public class PmoUserServiceImp {
             pmoUser.setAlertNotifierMobilePhone(solrEmergencyContacts.getPhone_s());
         }
 
-        // TODO 台東end
         if (StringUtils.isNotBlank(areaCode)) {
             pmoUser.setAreaCode(areaCode);
         }
