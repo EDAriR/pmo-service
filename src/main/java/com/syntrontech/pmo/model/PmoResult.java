@@ -2,28 +2,44 @@ package com.syntrontech.pmo.model;
 
 import com.syntrontech.pmo.model.common.PmoStatus;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "pmo_result")
 public class PmoResult {
     // TABLE pmo_result
 
     // sequence
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "sequence", nullable = false)
     private Long sequence;
     // user_id
+    @Column(name = "user_id", nullable = false)
     private String userId;
     // subject_id
+    @Column(name = "subject_id", nullable = false)
     private String subjectId;
     // measurement_type
+    @Column(name = "measurement_type", nullable = false)
+    @Enumerated(EnumType.STRING)
     private MeasurementPMOType measurementType;
     // record_id
+    @Column(name = "record_id", nullable = false)
     private Long recordId;
     // result
+    @Column(name = "result", nullable = false)
     private String result;
     // status
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
     private PmoStatus pmoStatus;
     // synctime
+    @Column(name = "synctime", nullable = false)
     private Date synctime;
     // tenant_id
+    @Column(name = "tenant_id", nullable = false)
     private String tenantId;
 
     @Override

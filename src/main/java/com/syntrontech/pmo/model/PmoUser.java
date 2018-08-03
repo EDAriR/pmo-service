@@ -2,24 +2,37 @@ package com.syntrontech.pmo.model;
 
 import com.syntrontech.pmo.model.common.PmoStatus;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "pmo_user")
 public class PmoUser {
 
     // TABLE pmo_user
     // sequence
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "sequence", nullable = false)
     private Long sequence;
     // user_id
+    @Column(name = "user_id", nullable = false)
     private String userId;
     // subject_id
+    @Column(name = "subject_id", nullable = false)
     private String subjectId;
     // pmo_password
+    @Column(name = "pmo_password", nullable = false)
     private String pmoPassword;
     // status
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private PmoStatus pmoStatus;
     // synctime
+    @Column(name = "synctime")
     private Date synctime;
     // tenant_id
+    @Column(name = "tenant_id", nullable = false)
     private String tenantId;
 
     public Long getSequence() {

@@ -1,8 +1,8 @@
-package com.syntrontech.pmo.service.imp;
+package com.syntrontech.pmo.healthCheck;
 
 import javax.ws.rs.client.ClientBuilder;
 
-import com.codahale.metrics.health.HealthCheck;
+import com.codahale.metrics.health.HealthCheck.*;
 import com.syntrontech.pmo.pmo.PmoWebServiceSettings;
 
 public class PMOHealthCheck {
@@ -15,7 +15,6 @@ public class PMOHealthCheck {
 	public void setPmoWsSettings(PmoWebServiceSettings pmoWsSettings) {
 		this.pmoWsSettings = pmoWsSettings;
 	}
-
 
 	protected Result check() throws Exception {
 		try{

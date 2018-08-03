@@ -1,5 +1,4 @@
 #spring properties
-
 spring:
   jpa:
     show-sql: false
@@ -52,3 +51,9 @@ push-service:
 #Customize syncareservice
 solr:
   url: http://localhost:8983/syncareservice/syntron
+#pmo
+pmo:
+  url: http://service.telecare.com.tw/MHWS_Test/
+  account: ttshb
+  credentials: yier67
+  areaCode: 10014
