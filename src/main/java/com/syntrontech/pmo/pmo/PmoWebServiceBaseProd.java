@@ -13,19 +13,14 @@ import com.syntrontech.pmo.pmo.vitalsign.VitalSignSoap;
 import com.syntrontech.pmo.util.JSON;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.service.spi.ServiceException;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class PmoWebServiceBaseProd implements PmoWebService {
-	private PmoWebServiceSettings pmoWsSettings;
-	
-	public PmoWebServiceSettings getPmoWsSettings() {
-		return pmoWsSettings;
-	}
 
-	public void setPmoWsSettings(PmoWebServiceSettings pmoWsSettings) {
-		this.pmoWsSettings = pmoWsSettings;
-	}
-	
+	@Autowired
+	private PmoSetting pmoWsSettings;
+
 	@Override
 	public ResultMessage registerUserByVendor(UserData user){
 		MemberSoap service = getMemberService();
@@ -97,21 +92,6 @@ public class PmoWebServiceBaseProd implements PmoWebService {
 		}
 	}
 	
-	public void getVitalRecord(){
-//		VitalSignSoap service = getVitalSignsService();
-//		service.getVitalRecord(id, pwd, type, startDate, endDate)
-	}
-	
-	public void changeUserPassword(){
-//		MemberSoap service = getMemberService();
-//		service.changePassword(id, oldPwd, newPwd)
-	}
-	
-	public void resetUserPassword(){
-//		MemberSoap service = getMemberService();
-//		service.resetPassword(id)
-	}
-	
 	private MemberSoap getMemberService() {
 		return getService(MemberSoap.class, "Member");
 	}
@@ -124,9 +104,9 @@ public class PmoWebServiceBaseProd implements PmoWebService {
 		return PmoService.service(clazz)
 			.url(pmoWsSettings.getUrl())
 			.serviceName(serviceName)
-			.trustStore(pmoWsSettings.getTrustStore())
-			.trustStorePassword(pmoWsSettings.getTrustStorePassword())
-			.trustStoreType(pmoWsSettings.getTrustStoreType())
+//			.trustStore(pmoWsSettings.getTrustStore())
+//			.trustStorePassword(pmoWsSettings.getTrustStorePassword())
+//			.trustStoreType(pmoWsSettings.getTrustStoreType())
 			.build();
 	}
 

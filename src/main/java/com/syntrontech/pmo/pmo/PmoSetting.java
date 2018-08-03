@@ -13,10 +13,10 @@ public class PmoSetting {
     private String url;
 
     @Value("${pmo.account}")
-    private String account;
+    private String pmoAccount;
 
     @Value("${pmo.credentials}")
-    private String credentials;
+    private String pmoCredentials;
 
     @Value("${pmo.areaCode}")
     private String areaCode;
@@ -29,20 +29,20 @@ public class PmoSetting {
         this.url = url;
     }
 
-    public String getAccount() {
-        return account;
+    public String getPmoAccount() {
+        return pmoAccount;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setPmoAccount(String pmoAccount) {
+        this.pmoAccount = pmoAccount;
     }
 
-    public String getCredentials() {
-        return credentials;
+    public String getPmoCredentials() {
+        return pmoCredentials;
     }
 
-    public void setCredentials(String credentials) {
-        this.credentials = credentials;
+    public void setPmoCredentials(String pmoCredentials) {
+        this.pmoCredentials = pmoCredentials;
     }
 
     public String getAreaCode() {

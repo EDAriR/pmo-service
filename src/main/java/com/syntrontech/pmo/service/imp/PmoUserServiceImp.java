@@ -5,8 +5,10 @@ import com.syntrontech.pmo.exception.client.ObjectNotExistedException;
 import com.syntrontech.pmo.exception.server.InternalServiceException;
 import com.syntrontech.pmo.model.common.PersonalHistoryType;
 import com.syntrontech.pmo.model.common.YN;
+import com.syntrontech.pmo.pmo.PmoSetting;
 import com.syntrontech.pmo.redis.model.RedisSubject;
 import com.syntrontech.pmo.restful.to.SearchTO;
+import com.syntrontech.pmo.service.PmoUserService;
 import com.syntrontech.pmo.solr.Solr;
 import com.syntrontech.pmo.solr.SolrException;
 import com.syntrontech.pmo.solr.SolrFilterNameConverter;
@@ -26,17 +28,20 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PmoUserServiceImp {
+public class PmoUserServiceImp implements PmoUserService {
 
     private PmoWebService pmoWS;
 
     @Autowired
     private Solr solrService;
 
+    @Autowired
+    private PmoSetting pmoSetting;
+
     @Override
     public UserData saveUser(RedisSubject redisSubject) {
 
-        UserData pmoUser = createPmoUser(redisSubject, areaCode);
+        UserData pmoUser = createPmoUser(redisSubject, pmoSetting.getAreaCode());
 
         ResultMessage pmoResult = pmoWS.uploadUserData(pmoUser);
 
