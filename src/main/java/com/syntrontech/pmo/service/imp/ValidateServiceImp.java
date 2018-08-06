@@ -3,6 +3,7 @@ package com.syntrontech.pmo.service.imp;
 import java.util.Arrays;
 import java.util.Optional;
 
+import com.syntrontech.pmo.redis.model.RedisUser;
 import com.syntrontech.pmo.service.SessionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,12 +50,12 @@ public class ValidateServiceImp implements SessionValidationService {
 											});
 		
 		if(!user.getStatus().equals(ModelUserStatus.ENABLED.name())){
-			logger.debug("userId[{}]'s status wasn't enabled", user.getId());
+			logger.debug("userId[{}]'s status wasn't enabled", user.getUserId());
 			throw new ForbiddenException();
 		}
 		
 		if(!Arrays.asList(user.getPermissionIds()).contains(permissionId)){
-			logger.debug("userId[{}] doesn't have the permission[{}]", user.getId(), permissionId);
+			logger.debug("userId[{}] doesn't have the permission[{}]", user.getUserId(), permissionId);
 			throw new ForbiddenException();
 		}
 		
