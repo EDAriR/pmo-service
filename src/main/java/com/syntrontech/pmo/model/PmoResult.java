@@ -1,5 +1,6 @@
 package com.syntrontech.pmo.model;
 
+import com.syntrontech.pmo.model.common.MeasurementPMOType;
 import com.syntrontech.pmo.model.common.PmoStatus;
 
 import javax.persistence.*;

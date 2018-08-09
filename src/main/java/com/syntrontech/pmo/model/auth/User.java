@@ -36,27 +36,27 @@ public class User {
 	private String meta;
 	
 	@Column(name = "unit_ids")
-	@Type(type = "com.syntrontech.auth.syncareservice.common.StringArrayType")
+	@Type(type = "com.syntrontech.pmo.model.common.StringArrayType")
 	private String[] unitIds;
 	
 	@Column(name = "role_ids")
-	@Type(type = "com.syntrontech.auth.syncareservice.common.StringArrayType")
+	@Type(type = "com.syntrontech.pmo.model.common.StringArrayType")
 	private String[] roleIds;
 	
 	@Column(name = "emails")
-	@Type(type = "com.syntrontech.auth.syncareservice.common.StringArrayType")
+	@Type(type = "com.syntrontech.pmo.model.common.StringArrayType")
 	private String[] emails;
 	
 	@Column(name = "mobilephones")
-	@Type(type = "com.syntrontech.auth.syncareservice.common.StringArrayType")
+	@Type(type = "com.syntrontech.pmo.model.common.StringArrayType")
 	private String[] mobilePhones;
 	
 	@Column(name = "cards")
-	@Type(type = "com.syntrontech.auth.syncareservice.common.StringArrayType")
+	@Type(type = "com.syntrontech.pmo.model.common.StringArrayType")
 	private String[] cards;
 	
 	@Column(name = "permission_ids")
-	@Type(type = "com.syntrontech.auth.syncareservice.common.StringArrayType")
+	@Type(type = "com.syntrontech.pmo.model.common.StringArrayType")
 	private String[] permissionIds;
 	
 	@Column(name = "createtime", nullable = false)

@@ -22,11 +22,6 @@ spring:
 liquibase:
   change-log: classpath:/db/changelog/db.changelog-master.yml
 #Customize zookeeper properties
-friend:
-  protocol: http
-  host: localhost
-  port: 9453
-  name: friend
 registry:
   address:
     - localhost:2181
@@ -53,6 +48,10 @@ solr:
   url: http://localhost:8983/syncareservice/syntron
 #pmo
 pmo:
+  protocol: http
+  host: localhost
+  port: 9966
+  name: pmo
   url: http://service.telecare.com.tw/MHWS_Test/
   account: ttshb
   credentials: yier67

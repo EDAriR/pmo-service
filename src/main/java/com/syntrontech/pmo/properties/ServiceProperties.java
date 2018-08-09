@@ -4,10 +4,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix="friend")
+@ConfigurationProperties(prefix="pmo")
 public class ServiceProperties {
 	private int port;
-	private String name = "friend";
+	private String name = "pmo";
 	private String protocol;
 	private String host;
 

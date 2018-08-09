@@ -1,4 +1,4 @@
-package com.syntrontech.pmo.model;
+package com.syntrontech.pmo.model.common;
 
 public enum MeasurementPMOType {
     BloodPressure, BloodGlucose

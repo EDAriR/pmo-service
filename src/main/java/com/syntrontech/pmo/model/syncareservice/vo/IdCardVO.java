@@ -3,7 +3,7 @@ package com.syntrontech.pmo.model.syncareservice.vo;
 import com.syntrontech.autoTool.annotation.ParamEnumRequired;
 import com.syntrontech.autoTool.annotation.ParamNotNull;
 import com.syntrontech.autoTool.annotation.ParamStringRestrict;
-import com.syntrontech.pmo.model.syncareservice.common.UserAgent;
+import com.syntrontech.pmo.model.common.UserAgent;
 
 public class IdCardVO {
 	

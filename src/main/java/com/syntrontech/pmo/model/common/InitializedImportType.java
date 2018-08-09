@@ -1,4 +1,4 @@
-package com.syntrontech.pmo.model.syncareservice.common;
+package com.syntrontech.pmo.model.common;
 
 public enum InitializedImportType {
 	ELDERLYLIVINGALONE, //獨居老人清單的檔案匯入

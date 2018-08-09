@@ -49,11 +49,11 @@ public class Subject {
 	private EthnicityType ethnicity;
 	
 	@Column(name = "personal_history")
-	@Type(type = "com.syntrontech.syncareservice.syncareservice.common.StringArrayType")
+	@Type(type = "com.syntrontech.pmo.model.common.StringArrayType")
 	private String[] personalHistory;
 	
 	@Column(name = "family_history")
-	@Type(type = "com.syntrontech.syncareservice.syncareservice.common.StringArrayType")
+	@Type(type = "com.syntrontech.pmo.model.common.StringArrayType")
 	private String[] familyHistory;
 	
 	@Column(name = "smoke")
