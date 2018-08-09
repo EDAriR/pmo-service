@@ -7,8 +7,10 @@ import com.syntrontech.pmo.model.common.PersonalHistoryType;
 import com.syntrontech.pmo.model.common.YN;
 import com.syntrontech.pmo.pmo.PmoSetting;
 import com.syntrontech.pmo.redis.model.RedisSubject;
+import com.syntrontech.pmo.repository.RedisSubjectRepository;
 import com.syntrontech.pmo.restful.to.SearchTO;
 import com.syntrontech.pmo.service.PmoUserService;
+import com.syntrontech.pmo.service.RedisPmoUserService;
 import com.syntrontech.pmo.solr.Solr;
 import com.syntrontech.pmo.solr.SolrException;
 import com.syntrontech.pmo.solr.SolrFilterNameConverter;
@@ -38,9 +40,20 @@ public class PmoUserServiceImp implements PmoUserService {
     @Autowired
     private PmoSetting pmoSetting;
 
-    @Override
-    public UserData saveUser(RedisSubject redisSubject) {
+    @Autowired
+    private RedisPmoUserService redisPmoUserService;
 
+    @Autowired
+    private RedisSubjectRepository redisSubjectRepository;
+
+
+    @Override
+    public UserData saveUser(String id) {
+
+        Optional<RedisSubject> redisSubjectOP = redisSubjectRepository.get(id);
+
+        // TODO
+        RedisSubject redisSubject = redisSubjectOP.get();
         UserData pmoUser = createPmoUser(redisSubject, pmoSetting.getAreaCode());
 
         ResultMessage pmoResult = pmoWS.uploadUserData(pmoUser);
@@ -61,7 +74,7 @@ public class PmoUserServiceImp implements PmoUserService {
         try {
             solrSubject = searchSubject(redisSubject);
             solrUser = searchUser(redisSubject);
-        } catch (InternalServiceException e ) {
+        } catch (InternalServiceException e) {
             e.printStackTrace();
         } catch (ParamFormatErrorException e) {
             e.printStackTrace();
@@ -81,14 +94,14 @@ public class PmoUserServiceImp implements PmoUserService {
 
         /**台東曾經有三張卡**/
         String[] cards = solrUser.getCards_ss();
-        if(cards != null){
+        if (cards != null) {
             int i = 0;
-            for(String c:Arrays.asList(cards)){
-                if(i == 0)
+            for (String c : Arrays.asList(cards)) {
+                if (i == 0)
                     pmoUser.setIdentifier(c);
-                if(i == 1)
+                if (i == 1)
                     pmoUser.setIdentifier2(c);
-                if(i == 2)
+                if (i == 2)
                     pmoUser.setIdentifier3(c);
 
                 i = i + 1;
@@ -96,20 +109,20 @@ public class PmoUserServiceImp implements PmoUserService {
         }
 
         String[] emails = solrUser.getEmails_ss();
-        if(emails != null && emails.length != 0)
+        if (emails != null && emails.length != 0)
             pmoUser.setEmail(solrUser.getEmails_ss()[0]);
 
-        char _sex = solrSubject.getSubjectGender_s() != null? solrSubject.getSubjectGender_s().charAt(0):'M';
+        char _sex = solrSubject.getSubjectGender_s() != null ? solrSubject.getSubjectGender_s().charAt(0) : 'M';
         pmoUser.setSex("" + _sex);
         String[] mobilePhones = solrUser.getMobilePhones_ss();
         String mobilPhone = null;
         String telPhone = null;
-        if(mobilePhones != null && mobilePhones.length != 0){
+        if (mobilePhones != null && mobilePhones.length != 0) {
 
             for (int i = 0; i < mobilePhones.length; i++) {
-                if(i == 0)
+                if (i == 0)
                     telPhone = fixPhoneNum(mobilePhones[i]);
-                if(i == 1)
+                if (i == 1)
                     mobilPhone = fixMobilePhoneNum(mobilePhones[i]);
             }
         }
@@ -123,20 +136,20 @@ public class PmoUserServiceImp implements PmoUserService {
         pmoUser.setName(solrSubject.getSubjectName_s());
         pmoUser.setAddress(solrSubject.getSubjectAddress_s());
 
-        pmoUser.setType("01");	// 2016-06-24  將Type預設為01(個人資料未同設備綁定為社區(01)或居家(02))
-        pmoUser.setGroup("01");	// 2016-06-24  將Group預設為01(個人資料未區分使用者族群為無(01)或弱勢族群(02))
+        pmoUser.setType("01");    // 2016-06-24  將Type預設為01(個人資料未同設備綁定為社區(01)或居家(02))
+        pmoUser.setGroup("01");    // 2016-06-24  將Group預設為01(個人資料未區分使用者族群為無(01)或弱勢族群(02))
 
         String[] personalHistorys = solrSubject.getSubjectPersonalHistory_ss();
 
         YN isHTN = YN.N;
         YN isDM = YN.N;
-        if(personalHistorys != null){
-            for(String p:Arrays.asList(personalHistorys)){
+        if (personalHistorys != null) {
+            for (String p : Arrays.asList(personalHistorys)) {
                 // 判斷個人病史中有高血壓 糖尿病
-                if(p.equals(PersonalHistoryType.HYPERTENSION)){
+                if (p.equals(PersonalHistoryType.HYPERTENSION)) {
                     isHTN = YN.Y;
                 }
-                if(p.equals(PersonalHistoryType.DIABETES_MELLITUS)){
+                if (p.equals(PersonalHistoryType.DIABETES_MELLITUS)) {
                     isDM = YN.Y;
                 }
             }
@@ -156,7 +169,7 @@ public class PmoUserServiceImp implements PmoUserService {
             e.printStackTrace();
         }
 
-        if(es != null && es.size() != 0){
+        if (es != null && es.size() != 0) {
             SolrEmergencyContacts solrEmergencyContacts = es.get(0);
             pmoUser.setIsAlert(YN.Y);
             pmoUser.setAlertNotifierName(solrEmergencyContacts.getName_s());
@@ -174,8 +187,8 @@ public class PmoUserServiceImp implements PmoUserService {
     private SolrUser searchUser(RedisSubject redisSubject) throws SolrException, InternalServiceException, ParamFormatErrorException, ObjectNotExistedException {
 
         String keyword = "*";
-        String tenantIdFilter = "tenantId"+":"+ redisSubject.getUserId();
-        String userIdFilter = "userId"+":"+ redisSubject.getTenantId();
+        String tenantIdFilter = "tenantId" + ":" + redisSubject.getUserId();
+        String userIdFilter = "userId" + ":" + redisSubject.getTenantId();
         List<String> filters = new ArrayList<>();
         filters.add(tenantIdFilter);
         filters.add(userIdFilter);
@@ -184,9 +197,9 @@ public class PmoUserServiceImp implements PmoUserService {
 
         SolrSearchModel<SolrUser> searchModel = solrService
                 .searchJsonDoc(keyword, 1, 10
-                , null, null, filters, SolrUser.class);
+                        , null, null, filters, SolrUser.class);
 
-        if( searchModel != null && searchModel.getContent().size() != 0)
+        if (searchModel != null && searchModel.getContent().size() != 0)
             return searchModel.getContent().get(0);
         else
             throw new ObjectNotExistedException("SolrUser");
@@ -197,9 +210,9 @@ public class PmoUserServiceImp implements PmoUserService {
             throws InternalServiceException, SolrException, ParamFormatErrorException, ObjectNotExistedException {
         String keyword = "*";
 
-        String tenantIdFilter = "tenantId"+":"+ redisSubject.getTenantId();
-        String userIdFilter = "userId"+":"+ redisSubject.getUserId();
-        String subjectIdFilter = "subjectId"+":"+ redisSubject.getId();
+        String tenantIdFilter = "tenantId" + ":" + redisSubject.getTenantId();
+        String userIdFilter = "userId" + ":" + redisSubject.getUserId();
+        String subjectIdFilter = "subjectId" + ":" + redisSubject.getId();
         List<String> filters = new ArrayList<>();
         filters.add(tenantIdFilter);
         filters.add(userIdFilter);
@@ -212,7 +225,7 @@ public class PmoUserServiceImp implements PmoUserService {
 
         List<SolrSubject> ss = searchModel.getContent();
 
-        if(ss != null && ss.size() != 0)
+        if (ss != null && ss.size() != 0)
             return ss.get(0);
         else
             throw new ObjectNotExistedException("SolrSubject");
@@ -223,8 +236,8 @@ public class PmoUserServiceImp implements PmoUserService {
 
         String keyword = "*";
 
-        String tenantIdFilter = "tenantId"+":"+tenantId;
-        String userIdFilter = "subjectId"+":"+subjectId;
+        String tenantIdFilter = "tenantId" + ":" + tenantId;
+        String userIdFilter = "subjectId" + ":" + subjectId;
 
         List<String> filters = new ArrayList<>();
         filters.add(tenantIdFilter);
@@ -283,15 +296,15 @@ public class PmoUserServiceImp implements PmoUserService {
     public String fixPhoneNum(String phone) {
 
         // TODO
-       if (phone.length() >= 9 || phone.length() < 11) {
+        if (phone.length() >= 9 || phone.length() < 11) {
             StringBuffer buff = new StringBuffer();
             buff.append(phone);
             buff.insert(0, "(");
             buff.insert(3, ")");
             phone = buff.toString();
-        }else {
-           phone = fixMobilePhoneNum(phone);
-       }
+        } else {
+            phone = fixMobilePhoneNum(phone);
+        }
         return phone;
     }
 

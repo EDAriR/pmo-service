@@ -16,11 +16,9 @@ public class SubscribeMessageHandlerController {
 	
 	private SubscribeMessageHandler createHandler(String channel){
 		SubscribeMessageHandler handler = null;
-		if("user".equals(channel)){
-//			handler = new SubscribeUserMessage();
-		}
-		if("ownership".equals(channel)){
-			handler = new SubscribeOwnershipMessage();
+
+		if("subject".equals(channel)){
+			handler = new SubscribeSubjectMessage();
 		}
 		return handler;
 	}

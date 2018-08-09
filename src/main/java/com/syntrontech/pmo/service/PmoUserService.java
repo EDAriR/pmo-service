@@ -5,5 +5,5 @@ import com.syntrontech.pmo.redis.model.RedisSubject;
 
 public interface PmoUserService {
 
-    UserData saveUser(RedisSubject redisSubject);
+    UserData saveUser(String id);
 }
