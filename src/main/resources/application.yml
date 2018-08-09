@@ -5,7 +5,7 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
-    url: jdbc:postgresql://localhost:5432/frienddb
+    url: jdbc:postgresql://localhost:5432/pmodb
     username: postgres
     password: 1qaz2wsx
     type: org.apache.commons.dbcp2.BasicDataSource
