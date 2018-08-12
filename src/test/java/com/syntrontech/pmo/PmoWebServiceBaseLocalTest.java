@@ -32,15 +32,15 @@ public class PmoWebServiceBaseLocalTest {
 
     }
 
-    @Test
-    public void testUploadVitalRecord() throws Exception {
-        VitalRecord record = new VitalRecord(
-                "M123456789", "2CE25FBB", "090200100101",
-                VitalRecord.Type.BP, "2014/06/27 12:23:56", null,
-                VitalRecord.InputType.Device, Arrays.asList(121, 76, 72),
-                "aaa", "VC_HOME", "XARD0001");
-        service.uploadVitalRecord(record, null);
-    }
+//    @Test
+//    public void testUploadVitalRecord() throws Exception {
+//        VitalRecord record = new VitalRecord(
+//                "M123456789", "2CE25FBB", "090200100101",
+//                VitalRecord.Type.BP, "2014/06/27 12:23:56", null,
+//                VitalRecord.InputType.Device, Arrays.asList(121, 76, 72),
+//                "aaa", "VC_HOME", "XARD0001");
+//        service.uploadVitalRecord(record, null);
+//    }
 
     @Test
     public void testUploadUserData() throws Exception {
