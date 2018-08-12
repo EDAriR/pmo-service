@@ -64,20 +64,17 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: record_id
+                  type: bigint
+              - column:
                   name: result
                   type: varchar(255)
-                  constraints:
-                    nullable: false
               - column:
                   name: measurement_type
                   type: varchar(255)
-                  constraints:
-                    nullable: false
               - column:
                   name: synctime
                   type: timestamp
-                  constraints:
-                    nullable: false
               - column:
                   name: status
                   type: varchar(255)
