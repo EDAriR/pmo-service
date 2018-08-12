@@ -41,8 +41,8 @@ public class PmoWebServiceBaseProdTest {
 
     }
 
-//    @Test
-//    public void testRegisterUser() throws Exception {
+    @Test
+    public void testRegisterUser() throws Exception {
 //        UserData user = new UserData();
 //        user.setIdno("B123456789");
 //        user.setPassword("B19860103");
@@ -54,10 +54,10 @@ public class PmoWebServiceBaseProdTest {
 //        user.setBirth("1986/01/03");
 //        ResultMessage message = pmoWs.registerUserByVendor(user);
 //        System.out.println("testRegisterUser MESSAGE:" + message);
-//    }
+    }
 
-//    @Test
-//    public void testUploadUserData() throws Exception {
+    @Test
+    public void testUploadUserData() throws Exception {
 //        UserData user = new UserData();
 //        user.setIdno("B123456789");
 //        user.setPassword("B19860103");
@@ -69,7 +69,7 @@ public class PmoWebServiceBaseProdTest {
 //        user.setBirth("1986/01/03");
 //        ResultMessage message = pmoWs.uploadUserData(user);
 //        System.out.println("testUploadUserData MESSAGE:" + message);
-//    }
+    }
 
 
 //    @Test
