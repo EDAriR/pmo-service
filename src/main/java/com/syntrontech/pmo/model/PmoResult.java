@@ -23,24 +23,24 @@ public class PmoResult {
     @Column(name = "subject_id", nullable = false)
     private String subjectId;
     // measurement_type
-    @Column(name = "measurement_type", nullable = false)
+    @Column(name = "measurement_type")
     @Enumerated(EnumType.STRING)
     private MeasurementPMOType measurementType;
     // record_id
-    @Column(name = "record_id", nullable = false)
+    @Column(name = "record_id")
     private Long recordId;
     // result
-    @Column(name = "result", nullable = false)
+    @Column(name = "result")
     private String result;
     // status
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private PmoStatus pmoStatus;
     // synctime
-    @Column(name = "synctime", nullable = false)
+    @Column(name = "synctime")
     private Date synctime;
     // tenant_id
-    @Column(name = "tenant_id", nullable = false)
+    @Column(name = "tenant_id")
     private String tenantId;
 
     @Override
