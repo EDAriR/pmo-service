@@ -31,8 +31,6 @@ databaseChangeLog:
               - column:
                   name: status
                   type: varchar(255)
-                  constraints:
-                    nullable: false
               - column:
                   name: synctime
                   type: timestamp
@@ -78,5 +76,3 @@ databaseChangeLog:
               - column:
                   name: status
                   type: varchar(255)
-                  constraints:
-                    nullable: false
