@@ -76,3 +76,8 @@ databaseChangeLog:
               - column:
                   name: status
                   type: varchar(255)
+              - column:
+                  name: tenant_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false

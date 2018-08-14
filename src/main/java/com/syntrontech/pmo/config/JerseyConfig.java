@@ -32,9 +32,6 @@ public class JerseyConfig extends ResourceConfig{
 	}
 	
 	private void registerResource(){
-//		register(FriendResource.class);
-//		register(BlockedResource.class);
-//		register(FollowResource.class);
 //		register(OwnershipResource.class);
 	}
 	
